@@ -67,8 +67,6 @@ This project demonstrates a microservices architecture using Spring Boot, Docker
 
 ## Last Sentence
 The main purpose of this project is to establish communication between microservices with RestTemplate.
-```
-
 
 
 
