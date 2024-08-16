@@ -28,7 +28,8 @@ This project demonstrates a microservices architecture using Spring Boot, Docker
 ## Prerequisites
 - Docker
 - Docker Compose
-- Java 11+
+- Kubernates 
+- Java 17+
 - Maven
 
 ## Running the Application
