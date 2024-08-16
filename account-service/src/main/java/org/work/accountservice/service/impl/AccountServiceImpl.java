@@ -81,6 +81,7 @@ public class AccountServiceImpl implements AccountService {
 
 }
 
+// WebClient
 /*
     @Override
     public Mono<AccountDto> createAccount(AccountDto accountDto) {
@@ -96,6 +97,8 @@ public class AccountServiceImpl implements AccountService {
     }
     */
 
+// RestTemplate
+/*
 //    @Override
 //    public AccountDto createAccount(AccountDto accountDto) {
 //
@@ -108,3 +111,4 @@ public class AccountServiceImpl implements AccountService {
 //        Account savedAccount = accountRepository.save(account);
 //        return accountMapper.convertToDto(savedAccount);
 //    }
+ */

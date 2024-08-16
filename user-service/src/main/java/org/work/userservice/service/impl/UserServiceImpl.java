@@ -65,7 +65,8 @@ public class UserServiceImpl implements UserService {
 
 }
 
-
+//WebClient
+/*
 //@Override
 //    public Mono<UserDto> getUserByAccountId(Long accountId) {
 //        return accountServiceClient.getAccountById(accountId)
@@ -80,7 +81,10 @@ public class UserServiceImpl implements UserService {
 //                });
 //    }
 
+ */
 
+//RestTemplate
+/*
 //    @Override
 //    public UserDto getUserByAccountId(Long accountId) {
 //        AccountDto accountDto = accountServiceClient.getAccountById(accountId);
@@ -91,3 +95,5 @@ public class UserServiceImpl implements UserService {
 //        }
 //        throw new ResourceNotFoundException("No user found for accountId: " + accountId);
 //    }
+
+ */

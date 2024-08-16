@@ -21,7 +21,8 @@ public class AccountServiceClient {
     }
 }
 
-
+//WebClient
+/*
 //    private final WebClient.Builder webClientBuilder;
 //
 //    public Mono<AccountDto> getAccountById(Long id) {
@@ -33,7 +34,10 @@ public class AccountServiceClient {
 //                .bodyToMono(AccountDto.class);
 //    }
 
+ */
 
+
+//RestTemplate
 /*
 import org.springframework.web.client.RestTemplate;
 
