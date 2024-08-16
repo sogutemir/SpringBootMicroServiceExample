@@ -1,7 +1,7 @@
 # SpringBootMicroServiceExample
 
 ## Overview
-This project demonstrates a microservices architecture using Spring Boot, Docker, and Docker Compose. It consists of two main services: `user-service` and `account-service`, which communicate with each other using REST APIs.
+This project demonstrates a microservices architecture using Spring Boot, Docker, Kubernates and Docker Compose. It consists of two main services: `user-service` and `account-service`, which communicate with each other using REST APIs.
 
 ## Services
 ### User Service
