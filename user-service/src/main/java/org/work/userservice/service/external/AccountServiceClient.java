@@ -1,9 +1,30 @@
+// AccountServiceClient.java
 package org.work.userservice.service.external;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.work.userservice.model.external.AccountDto;
+import reactor.core.publisher.Mono;
+
+@Service
+@RequiredArgsConstructor
+public class AccountServiceClient {
+
+    private final WebClient.Builder webClientBuilder;
+
+    public Mono<AccountDto> getAccountById(Long id) {
+        String url = "http://account-service:8080/api/accounts/" + id;
+        return webClientBuilder.build()
+                .get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(AccountDto.class);
+    }
+}
+
+/*
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
@@ -16,3 +37,4 @@ public class AccountServiceClient {
         return restTemplate.getForObject(url, AccountDto.class);
     }
 }
+*/

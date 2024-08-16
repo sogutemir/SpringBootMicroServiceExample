@@ -40,7 +40,7 @@ public class UserController {
 
     @GetMapping("/account/{accountId}")
     public ResponseEntity<UserDto> getUserByAccountId(@PathVariable Long accountId) {
-        UserDto user = userService.getUserByAccountId(accountId);
+        UserDto user = userService.getUserByAccountId(accountId).block();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

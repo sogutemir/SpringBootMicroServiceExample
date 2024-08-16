@@ -1,6 +1,7 @@
 package org.work.userservice.service;
 
 import org.work.userservice.model.dto.UserDto;
+import reactor.core.publisher.Mono;
 
 public interface UserService {
     UserDto createUser(UserDto userDto);
@@ -8,6 +9,6 @@ public interface UserService {
     UserDto updateUser(Long id, UserDto userDto);
     void deleteUser(Long id);
 
-    UserDto getUserByAccountId(Long accountId);
+    Mono<UserDto> getUserByAccountId(Long accountId);
 
 }

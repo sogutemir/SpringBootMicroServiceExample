@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 import org.work.userservice.exception.ResourceNotFoundException;
 import org.work.userservice.model.dto.UserDto;
 import org.work.userservice.model.entity.User;
-import org.work.userservice.model.external.AccountDto;
 import org.work.userservice.model.mapper.UserMapper;
 import org.work.userservice.repository.UserRepository;
 import org.work.userservice.service.UserService;
 import org.work.userservice.service.external.AccountServiceClient;
+import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 @Service
@@ -52,13 +52,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserByAccountId(Long accountId) {
-        AccountDto accountDto = accountServiceClient.getAccountById(accountId);
-        if(accountDto != null) {
-            return userRepository.findById(accountDto.getUserId())
-                    .map(userMapper::convertToDto)
-                    .orElseThrow(() -> new ResourceNotFoundException("User not found with accountId: " + accountId));
-        }
-        throw new ResourceNotFoundException("No user found for accountId: " + accountId);
+    public Mono<UserDto> getUserByAccountId(Long accountId) {
+        return accountServiceClient.getAccountById(accountId)
+                .flatMap(accountDto -> {
+                    if (accountDto != null) {
+                        return Mono.defer(() -> userRepository.findById(accountDto.getUserId())
+                                .map(userMapper::convertToDto)
+                                .map(Mono::just)
+                                .orElseGet(() -> Mono.error(new ResourceNotFoundException("User not found with accountId: " + accountId))));
+                    }
+                    return Mono.error(new ResourceNotFoundException("No user found for accountId: " + accountId));
+                });
     }
 }
+
+
+//    @Override
+//    public UserDto getUserByAccountId(Long accountId) {
+//        AccountDto accountDto = accountServiceClient.getAccountById(accountId);
+//        if(accountDto != null) {
+//            return userRepository.findById(accountDto.getUserId())
+//                    .map(userMapper::convertToDto)
+//                    .orElseThrow(() -> new ResourceNotFoundException("User not found with accountId: " + accountId));
+//        }
+//        throw new ResourceNotFoundException("No user found for accountId: " + accountId);
+//    }
